@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Text slide (right→left)</title>
+<style>
+  .marquee-wrap {
+    width: 100%;
+    overflow: hidden;
+    background: #f3f4f6;
+    border: 1px solid #ddd;
+    padding: 8px 0;
+  }
+
+  .marquee {
+    display: inline-block;
+    white-space: nowrap;
+    /* animation: নাম, সময়, timing, loop */
+    animation: slide-left 50s linear infinite;
+    font-size: 18px;
+    padding-left: 100%; /* শুরুতে ডান বাইরে থেকে আসার জন্য */
+  }
+
+  @keyframes slide-left {
+    0%   { transform: translateX(0); }   /* because of padding-left:100% starts off-screen right */
+    100% { transform: translateX(-100%); }
+  }
+
+  /* pause on hover */
+  .marquee-wrap:hover .marquee {
+    animation-play-state: paused;
+  }
+</style>
+</head>
+<body>
+  <div class="marquee-wrap" aria-label="moving text">
+    <div class="marquee">এটি একটি ডান থেকে বামে স্লাইডিং টেক্সট — তোমার মেসেজ এখানে লিখো।</div>
+  </div>
+</body>
+</html>
