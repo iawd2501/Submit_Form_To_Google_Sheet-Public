@@ -1,41 +1,530 @@
-<!doctype html>
-<html lang="bn">
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Text slide (right→left)</title>
-<style>
-  .marquee-wrap {
-    width: 100%;
-    overflow: hidden;
-    background: #f3f4f6;
-    border: 1px solid #ddd;
-    padding: 8px 0;
-  }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="uploads/logo.png" rel="shortcut icon">
+  <title>Paykassma Registration Form</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
-  .marquee {
-    display: inline-block;
-    white-space: nowrap;
-    /* animation: নাম, সময়, timing, loop */
-    animation: slide-left 50s linear infinite;
-    font-size: 18px;
-    padding-left: 100%; /* শুরুতে ডান বাইরে থেকে আসার জন্য */
-  }
+  <style>
+    body {
+      background: #ffffff;
+      /* background: linear-gradient(90deg, rgba(255, 255, 255, 1) 2%, rgba(228, 242, 228, 1) 46%, rgba(255, 255, 232, 1) 99%); */
+      
+       background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('uploads/bg1.jpeg');
+      background-size: cover;
+      background-position: center;
 
-  @keyframes slide-left {
-    0%   { transform: translateX(0); }   /* because of padding-left:100% starts off-screen right */
-    100% { transform: translateX(-100%); }
-  }
+
+    }
+    .form-container {
+      max-width: 650px;
+      margin: 40px auto;
+      border-radius: 20px;
+      box-shadow: 0 3px 27px rgba(0, 0, 0, 0.1);
+      background: #ffffff;
+      background: linear-gradient(90deg, rgba(255, 255, 255, 1) 10%, rgba(228, 242, 228, 1) 50%, rgba(255, 255, 232, 1) 90%);
+      padding: 40px;
+    }
+
+    /* slide manu */
+    /* Navbar style */
+     .navbar {
+      background-color: #e3f2fd;
+      overflow: hidden; /* logo যাতে বাইরে না যায় */
+    }
+
+    .navbar .container {
+      position: relative;
+    }
+
+    /* Logo animation */
+    .logo-slide {
+      position: absolute;
+      top: 8px;
+      left: 0;
+      height: 60px;
+      width: auto;
+      animation: moveLogo 8s linear infinite;
+    }
+
+    @keyframes moveLogo {
+      0% {
+        transform: translateX(-120%); /* একদম বাম দিক থেকে শুরু */
+      }
+      100% {
+        transform: translateX(100%); /* একদম ডান দিক পর্যন্ত যাবে */
+      }
+    }
+
+    /* Menu right side রাখব */
+    .navbar-nav {
+      margin-left: auto;
+    }
+
+    /* মোবাইলেও একই animation থাকবে */
+    @media (max-width: 992px) {
+      .logo-slide {
+        position: static;
+        display: block;
+        margin: 0 auto 8px;
+        animation: moveLogo 8s linear infinite;
+      }
+      .navbar-nav {
+        margin-left: 0;
+        text-align: center;
+      }
+    }
+    /* Slied  end */
 
   /* pause on hover */
   .marquee-wrap:hover .marquee {
     animation-play-state: paused;
   }
-</style>
+    .form-header {
+      text-align: center;
+      margin-bottom: 25px;
+    }
+    .form-header img {
+      width: 55%;
+      margin-bottom: 15px;
+    }
+    .form-header h1 {
+      font-weight: 700;
+      color: #1976d2;
+      font-size: 24px;
+    }
+    .form-header p {
+      font-size: 15px;
+      color: #555;
+    }
+    .file-input {
+      display: none;
+    }
+    .file-label {
+      display: inline-block;
+      padding: 40px;
+      border: 2px solid #929191;
+      border-radius: 10px;
+      width: 100%;
+      text-align: center;
+      cursor: pointer;
+      color: #0288d1;
+      background-color: #e1f5fe;
+      transition: all 0.3s ease;
+    }
+    .file-label:hover {
+      background-color: #b3e5fc;
+    }
+    .file-name {
+      margin-top: 8px;
+      display: block;
+      font-size: 14px;
+      color: #555;
+    }
+    #message {
+      display: none;
+      text-align: center;
+      padding: 10px;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+     .footer {
+      background:#ffffff;
+      color:#000035;
+      padding: 50px 0;
+    }
+    .footer a {
+      color: #aaa;
+      text-decoration: none;
+    }
+    .footer a:hover {
+      color: #fff;
+    }
+    .social-icons a {
+      display: inline-block;
+      margin-right: 10px;
+      color: #fff;
+      font-size: 18px;
+      width: 35px;
+      height: 35px;
+      text-align: center;
+      line-height: 35px;
+      border-radius: 50%;
+        background: #007bff;
+        color: #fff;
+    }
+    .social-icons a:hover {
+      background: #007bff;
+      color: #fff;
+    }
+    .footer .subscribe input {
+      border-radius: 0;
+      border: none;
+      padding: 10px;
+      width: 70%;
+    }
+    .footer .subscribe button {
+      border-radius: 0;
+      padding: 10px 20px;
+    }
+    .payment-icons img {
+      width: 40px;
+      margin-right: 5px;
+      margin-bottom: 5px;
+    }
+
+
+/* Tablet (768px - 1024px) */
+@media (max-width: 1024px) {
+  .form-container {
+    width: 90%;
+    padding: 30px;
+  }
+  .form-container{
+    max-width: 100%;
+  }
+  .form-header img {
+    width: 60%;
+  }
+  .footer .col-md-4 {
+    text-align: center;
+  }
+  .footer h1 {
+    font-size: 26px;
+  }
+  .footer h5 {
+    font-size: 18px;
+  }
+}
+
+/* Mobile (max-width: 767px) */
+@media (max-width: 767px) {
+  body {
+    background-position: top center;
+  }
+  .form-container {
+    width: 95%;
+    margin: 20px auto;
+    padding: 25px;
+  }
+  .form-header img {
+    width: 70%;
+  }
+  .form-header h1 {
+    font-size: 20px;
+  }
+  .form-header p {
+    font-size: 14px;
+  }
+  .file-label {
+    padding: 25px;
+    font-size: 14px;
+  }
+  .footer {
+    padding: 30px 0;
+    text-align: center;
+  }
+  .footer .row {
+    flex-direction: column;
+  }
+  .footer .col-md-4 {
+    width: 100%;
+    margin-bottom: 25px;
+  }
+  .social-icons a {
+    margin: 5px;
+  }
+  .payment-icons img {
+    width: 60px;
+  }
+  .navbar img.w-25 {
+    width: 50% !important;
+  }
+  .navbar-nav {
+    text-align: center;
+  }
+}
+
+/* Small Mobile (max-width: 480px) */
+@media (max-width: 480px) {
+  .form-header img {
+    width: 80%;
+  }
+  .form-container {
+    padding: 20px;
+  }
+  .form-header h1 {
+    font-size: 18px;
+  }
+  .file-label {
+    font-size: 13px;
+  }
+  .footer h1 {
+    font-size: 22px;
+  }
+  .footer h5 {
+    font-size: 16px;
+  }
+  .payment-icons img {
+    width: 45px;
+  }
+  .navbar img.w-25 {
+    width: 65% !important;
+  }
+}
+
+
+  </style>
 </head>
 <body>
-  <div class="marquee-wrap" aria-label="moving text">
-    <div class="marquee">এটি একটি ডান থেকে বামে স্লাইডিং টেক্সট — তোমার মেসেজ এখানে লিখো।</div>
+
+<!-- <p class="marquee d-inline ">এটি একটি ডান থেকে বামে স্লাইডিং টেক্সট — তোমার মেসেজ এখানে লিখো।</p> -->
+<!-- navber -->
+ <nav class="navbar navbar-expand-lg" data-bs-theme="light">
+    <div class="container" style="padding: 1%;">
+      <!-- Logo: will keep sliding continuously -->
+      <img src="uploads/logo_bg_remove.png" alt="Logo" class="logo-slide">
+
+      <!-- Navbar toggler (mobile menu button) -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown"
+        aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Menu Items -->
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+          <li class="nav-item"><a class="nav-link active" href="#">About</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Blog</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">Contacts</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div class="form-container">
+    <div class="form-header">
+
+      <!-- slid -->
+
+      <img src="uploads/logo_bg_remove.png" alt="Paykassma Logo" />
+      <h1>PAYKASSMA</h1>
+      <p>The registration form of Paykassma.</p>
+    </div>
+
+    <form id="form" class="mb-5" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label class="form-label">Full Name*</label>
+        <input type="text" class="form-control" name="Name" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Phone/Telegram Username*</label>
+        <input type="text" class="form-control" name="Username" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Date OF Birth*</label>
+        <input type="date" class="form-control" name="Date of brith" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Place of Birth*</label>
+        <input type="text" class="form-control" name="Place of brith" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Address*</label>
+        <input type="text" class="form-control" name="Address" required />
+      </div>
+
+      
+      <div class="mb-3">
+        <label class="form-label">Email*</label>
+        <input type="email" class="form-control" name="Email" required />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">National ID / Pan card / Aadhaar Card / Passport (Number)*</label>
+        <input type="number" class="form-control" name="ID Number" required />
+      </div>
+
+      <!-- File 1 -->
+      <div class="mb-3">
+        <label class="form-label">A photo of your national ID card both side*</label>
+        <label class="file-label" for="fileInput1">Choose a file...</label>
+        <input type="file" class="file-input" id="fileInput1" name="NID Card" accept="image/*" required />
+        <span class="file-name" id="fileNameDisplay1">No file selected</span>
+      </div>
+
+      <!-- File 2 -->
+      <div class="mb-3">
+        <label class="form-label">A selfie with your national ID card*</label>
+        <label class="file-label" for="fileInput2">Choose a file...</label>
+        <input type="file" class="file-input" id="fileInput2" name="NID Selfy" accept="image/*" required />
+        <span class="file-name" id="fileNameDisplay2">No file selected</span>
+      </div>
+
+      <!-- Agent or Client -->
+      <div class="mb-3">
+        <label class="form-label">Would you like to work as a general client or as an agent ?</label><br />
+        <label><input type="radio" name="Role" value="Agent" required /> Agent</label><br />
+        <label><input type="radio" name="Role" value="General Client" required /> General Client</label>
+      </div>
+
+      <button type="submit" id="submit-button" class="btn btn-primary w-100">Submit</button>
+    </form>
+    <div id="message"></div>
   </div>
+<footer class="footer mt-5">
+  <div class="container">
+    <div class="row">
+
+      <!-- About Section -->
+      <div class="col-12 col-sm-12 col-md-4 mb-4 text-center text-md-start">
+        <h1 class="text-" style="color:#09097a;" >Paykassma</h1>
+        <h6 class="mb-3">Follow us on---</h6>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/share/17PcJpPgNJ/?mibextid=wwXIfr"><i class="fab fa-facebook-f"></i></a>
+          <a href="https://www.instagram.com/paykassma_official_agent?igsh=M3A3aG1vbmRuc3Jo"><i class="fab fa-instagram"></i></a>
+          <a href="https://api.whatsapp.com/send/?phone=%2B9113133160941&text&type=phone_number&app_absent=0" class="mt-3"><i class="fab fa-whatsapp"></i></a>
+          <a href="https://t.me/paykassma_officialcom" class="mt-3">
+              <i class="fa-brands fa-telegram"></i>
+          </a>
+          <a href="https://x.com/paykassma_agent?s=11"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="col-12 col-sm-12 col-md-4 mb-4 text-center text-md-start">
+        <h5 style="color:#09097a;">Quick Links</h5>
+        <ul class="list-unstyled text-white">
+          <li><a href="#" style="color:#09097a;" >About Page</a></li>
+          <li><a href="#" style="color:#09097a;">Blog Page</a></li>
+          <li><a href="#" style="color:#09097a;">Solutions Page</a></li>
+          <li><a href="#" style="color:#09097a;">Contact Page</a></li>
+        </ul>
+      </div>
+
+      <!-- Payment & Subscribe -->
+      <div class="col-12 col-sm-12 col-md-4 mb-4 text-center text-md-start">
+        <h4 style="color:#09097a;">We Accepted</h4>
+        <h4 class="" style="color:#09097a;">100+ Local payment methods withhin a single integration </h4>
+        <div class="payment-icons mb-3">
+          <img src="uploads/1_20251016_084331_0000.png" alt="Payment" class="img-fluid rounded " style="height: 150px; width: 100%;">
+        </div>
+    </div>
+  </div>
+</footer>
+
+
+  <div class="col-md-12 col-lg-12 bg-dark ">
+    <p class="text-white py-3 text-center" style="margin-bottom: -50px;"> Copyright © 2025 Paykassma. All Rights Reserved. </p>
+  </div>
+
+
+  <script>
+  const scriptURL =
+    "https://script.google.com/macros/s/AKfycbyI0X8OINA1e17dYf0MbNTBp0KNiBLNydf3_B6JGBdgH1Euz-vxp6dIEJWkh-pMYnsg/exec";
+
+  const form = document.getElementById("form");
+  const messageDiv = document.getElementById("message");
+  const submitButton = document.getElementById("submit-button");
+
+  const fileInput1 = document.getElementById("fileInput1");
+  const fileInput2 = document.getElementById("fileInput2");
+  const fileNameDisplay1 = document.getElementById("fileNameDisplay1");
+  const fileNameDisplay2 = document.getElementById("fileNameDisplay2");
+
+  // 🧾 File name preview
+  fileInput1.addEventListener("change", () => {
+    fileNameDisplay1.textContent =
+      fileInput1.files[0]?.name || "No file selected";
+  });
+  fileInput2.addEventListener("change", () => {
+    fileNameDisplay2.textContent =
+      fileInput2.files[0]?.name || "No file selected";
+  });
+
+  // 🔄 Convert file to base64
+  async function fileToBase64(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => {
+        const data = reader.result.split(",");
+        resolve({
+          fileName: file.name,
+          mimeType: data[0].match(/:(.*?);/)[1],
+          data: data[1],
+        });
+      };
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  // 🚀 Form submit
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    messageDiv.style.display = "block";
+    messageDiv.textContent = "Submitting...";
+    messageDiv.style.backgroundColor = "beige";
+    messageDiv.style.color = "black";
+
+    submitButton.disabled = true;
+
+    try {
+      const formData = new FormData(form);
+      const obj = {};
+      for (let [key, value] of formData.entries()) obj[key] = value;
+
+      // Attach files (base64)
+      if (fileInput1.files.length > 0)
+        obj.national_id_card = await fileToBase64(fileInput1.files[0]);
+      if (fileInput2.files.length > 0)
+        obj.selfie_with_id = await fileToBase64(fileInput2.files[0]);
+
+      // Send to Google Apps Script
+      const response = await fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(obj),
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+      });
+
+      const data = await response.json();
+
+      if (data.status === "success") {
+        messageDiv.textContent = "✅ Form submitted successfully!";
+        messageDiv.style.backgroundColor = "#48c78e";
+        messageDiv.style.color = "white";
+        form.reset();
+        fileNameDisplay1.textContent = "No file selected";
+        fileNameDisplay2.textContent = "No file selected";
+      } else {
+        throw new Error(data.message || "Unknown error");
+      }
+    } catch (err) {
+      console.error(err);
+      messageDiv.textContent = "❌ Error: " + err.message;
+      messageDiv.style.backgroundColor = "#f14668";
+      messageDiv.style.color = "white";
+    } finally {
+      submitButton.disabled = false;
+      setTimeout(() => (messageDiv.style.display = "none"), 4000);
+    }
+  });
+</script>
+
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
 </body>
 </html>
+
+
+
+
